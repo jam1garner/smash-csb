@@ -1,52 +1,37 @@
-# smash-csb
+# csb_lib
 
-A Rust library/cli for working with `commonsoundtable.csb` files from Smash Ultimate.
+A Rust library for reading and writing `commonsoundtable.csb` files from Super Smash Bros. Ultimate.
 
-### Example CLI usage
+## csb_yaml
 
-```
-smash-csb 0.8.0
-A tool for converting between Smash Ultimate common sound table files and yaml
+A command-line program for creating and editing `commonsoundtable.csb` files using YAML. Drag and drop a `commonsoundtable.csb` file onto the executable to create a YAML file. Drag and drop a properly structured YAML file onto the executable to create a `commonsoundtable.csb` file. YAML files are text files, so they can be viewed and edited in any text editor.
 
-USAGE:
-    csb [OPTIONS] <in-file> <out-file>
+Sample output from a `commonsoundtable.csb` file:
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-OPTIONS:
-    -l, --labels <labels>    newline-separated hash labels to use
-
-ARGS:
-    <in-file>
-    <out-file>
-```
-
-Convert to yaml:
-
-```
-csb commonsoundtable.csb csb.yaml
+```yaml
+entries:
+- fighter_kind: mario
+  sound_table:
+  - vc_mario_missfoot01
+  - vc_mario_missfoot02
+  - vc_mario_damage_twinkle
+  - vc_mario_cheer
+- fighter_kind: donkey
+  sound_table:
+  - vc_donkey_missfoot01
+  - vc_donkey_missfoot02
+  - vc_donkey_damage_twinkle
+  - vc_donkey_cheer
 ```
 
-Convert back:
+### Usage
 
-```
-csb csb.yaml commonsoundtable.csb
-```
+The latest prebuilt binary for Windows is available in [Releases](https://github.com/jam1garner/smash-csb/releases/latest).
 
-By default, the CLI uses `ParamLabels.csv` from the current directory, however other labels can be passed using `--labels` or `-l`.
+Download the latest set of [labels](https://github.com/ultimate-research/param-labels/blob/master/commonsoundtable/Labels.txt) and have them placed beside the executable when dragging and dropping or include them in the command when converting to YAML. Missing labels will result in all sound labels appearing as hashes.
 
-### Example Library Usage
-
-```rust
-use csb::CsbFile;
-
-let mut file = CsbFile::open("commonsoundtable.csb")?;
-
-for entry in file.entries() {
-    println!("name: {}", entry.character_name);
-}
-
-file.save("commonsoundtable.csb")?;
-```
+`csb_yaml <input> [output]`<br>
+`csb_yaml <input> [output] [label]`<br>
+`csb_yaml commonsoundtable.csb commonsoundtable.yaml`<br>
+`csb_yaml commonsoundtable.csb commonsoundtable.yaml -l Labels.txt`<br>
+`csb_yaml commonsoundtable.yaml commonsoundtable.csb`<br>
