@@ -4,7 +4,7 @@ use std::{
 };
 
 use clap::Parser;
-use csb_lib::{CsbFile, Hash40};
+use smash_csb::{CsbFile, Hash40};
 
 /// Convert commonsoundtable.csb files to and from YAML
 #[derive(Parser)]

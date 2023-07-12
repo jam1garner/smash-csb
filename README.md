@@ -1,6 +1,10 @@
-# csb_lib
+# smash-csb
 
 A Rust library for reading and writing `commonsoundtable.csb` files from Super Smash Bros. Ultimate.
+
+```
+cargo add smash-csb
+```
 
 ## csb_yaml
 

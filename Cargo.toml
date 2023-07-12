@@ -1,2 +1,2 @@
 [workspace]
-members = ["csb_lib", "csb_yaml"]
+members = ["smash-csb", "csb_yaml"]
